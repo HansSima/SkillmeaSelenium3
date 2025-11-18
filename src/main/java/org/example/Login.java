@@ -1,19 +1,25 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeAll;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class Login {
     private WebDriver driver;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() {
-        //Prepsat cestu u sveho projektu na webdriver
-        System.setProperty("webdriver.chrome.driver", "D:\\StudijniMaterialy\\Studijni_material\\Studijni_material\\11_Selenium\\Kod\\SkillmeaSelenium3\\src\\main\\resources\\chromedriver.exe");
+        //Prepsat cestu u sveho projektu na webdriver (Toto plati pouze pro klasicke pridani ChromeDriver
+        /*System.setProperty("webdriver.chrome.driver", "D:\\StudijniMaterialy\\Studijni_material\\Studijni_material\\11_Selenium\\Kod\\SkillmeaSelenium3\\src\\main\\resources\\chromedriver.exe");
+        driver = new ChromeDriver();*/
+
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
