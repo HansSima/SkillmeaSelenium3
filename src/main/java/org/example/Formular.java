@@ -1,6 +1,7 @@
 package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -13,12 +14,16 @@ public class Formular {
 
     @BeforeEach
     public void setUp() {
-        //Prepsat cestu u sveho projektu na webdriver (Toto plati pouze pro klasicke pridani ChromeDriver
-        /*System.setProperty("webdriver.chrome.driver", "D:\\StudijniMaterialy\\Studijni_material\\Studijni_material\\11_Selenium\\Kod\\SkillmeaSelenium3\\src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();*/
-
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    public void uklid(){
+        //Pro zavreni okna prohlizece
+        driver.close();
+        //Pro zruseni objektu driver
+        driver.quit();
     }
 
     @Test
@@ -31,10 +36,9 @@ public class Formular {
         //Prikaz pro nalezeni prvku a klik na nej
         driver.findElement(By.id("gender")).click();
         driver.findElement(By.xpath("//*[@id=\"practiceForm\"]/div[3]/div/div/div[2]/input")).click();
-
+        //Validace, zda jsou radiobuttony zaskrtnuty
         assertTrue(driver.findElement(By.xpath("//*[@id=\"practiceForm\"]/div[3]/div/div/div[2]/input")).isSelected());
         assertFalse(driver.findElement(By.id("gender")).isSelected(), "Radiobutton je zaskrtnut :(");
-
     }
 
 
