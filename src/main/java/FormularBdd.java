@@ -1,5 +1,6 @@
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -55,6 +56,16 @@ public class FormularBdd {
         formularPage.clickOnFemaleRadioButton();
     }
 
+    @And("Uzivatel klikne na radiobutton {string}")
+    public void uzivatelKlikneNaRadiobutton(String pohlavi) {
+        if(pohlavi.equals("male")){
+            driver.findElement(By.id("gender")).click();
+        } else if(pohlavi.equals("female")){
+            formularPage.clickOnFemaleRadioButton();
+        }
+
+    }
+
     @Then("Uzivatel vidi zaskrtnuty radiobutton female")
     public void uzivatelVidiZaskrtnutyRadiobuttonFemale() {
         assertTrue(formularPage.isFemaleRadioButtonChecked());
@@ -64,4 +75,6 @@ public class FormularBdd {
     public void uzivatelVidiOdskrtnutyRadiobuttonMale() {
         assertFalse(driver.findElement(By.id("gender")).isSelected(), "Radiobutton je zaskrtnut :(");
     }
+
+
 }
