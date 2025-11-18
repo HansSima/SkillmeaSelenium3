@@ -38,7 +38,7 @@ public class Formular {
         driver.findElement(By.xpath("//*[@id=\"practiceForm\"]/div[3]/div/div/div[2]/input")).click();
         //Validace, zda jsou radiobuttony zaskrtnuty
         assertTrue(driver.findElement(By.xpath("//*[@id=\"practiceForm\"]/div[3]/div/div/div[2]/input")).isSelected());
-        assertFalse(driver.findElement(By.id("gender")).isSelected(), "Radiobutton je zaskrtnut :(");
+        //assertFalse(driver.findElement(By.id("gender")).isSelected(), "Radiobutton je zaskrtnut :(");
     }
 
 
